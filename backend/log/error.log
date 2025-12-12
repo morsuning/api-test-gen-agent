@@ -1,0 +1,799 @@
+    "data_requirements": "无需特殊数据",
+    "request_body": {
+      "name": "Buddy",
+      "tag": 12345
+    }
+  },
+  {
+    "id": "test_create_pet_008",
+    "name": "创建宠物边界测试-name为空字符串",
+    "description": "验证name字段为空字符串时返回400 Bad Request",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 400,
+    "data_requirements": "无需特殊数据",
+    "request_body": {
+      "name": ""
+    }
+  },
+  {
+    "id": "test_create_pet_009",
+    "name": "创建宠物边界测试-name为超长字符串",
+    "description": "验证name字段为256字符超长字符串时返回400 Bad Request",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 400,
+    "data_requirements": "无需特殊数据",
+    "request_body": {
+      "name": "a".repeat(256)
+    }
+  },
+  {
+    "id": "test_create_pet_010",
+    "name": "创建宠物边界测试-tag为空字符串",
+    "description": "验证tag字段为空字符串时能成功创建并返回201状态码",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "data_requirements": "无需特殊数据",
+    "request_body": {
+      "name": "Whiskers",
+      "tag": ""
+    }
+  },
+  {
+    "id": "test_create_pet_011",
+    "name": "创建宠物边界测试-tag为超长字符串",
+    "description": "验证tag字段为256字符超长字符串时返回400 Bad Request",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 400,
+    "data_requirements": "无需特殊数据",
+    "request_body": {
+      "name": "Luna",
+      "tag": "b".repeat(256)
+    }
+  },
+  {
+    "id": "test_show_pet_by_id_001",
+    "name": "获取指定宠物详情成功",
+    "description": "验证使用存在的有效petId能正确返回宠物详情和200状态码",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "数据库中预置一条宠物数据，ID为'pet123'"
+  },
+  {
+    "id": "test_show_pet_by_id_002",
+    "name": "获取指定宠物详情失败-宠物ID不存在",
+    "description": "验证使用不存在的petId时返回404 Not Found",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "data_requirements": "确保数据库中不存在ID为'nonexistent'的宠物"
+  },
+  {
+    "id": "test_show_pet_by_id_003",
+    "name": "获取指定宠物详情失败-宠物ID为特殊字符",
+    "description": "验证使用特殊字符作为petId时返回400 Bad Request",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 400,
+    "data_requirements": "无需特殊数据"
+  },
+  {
+    "id": "test_show_pet_by_id_004",
+    "name": "获取指定宠物详情失败-宠物ID为空字符串",
+    "description": "验证使用空字符串作为petId时返回400 Bad Request",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 400,
+    "data_requirements": "无需特殊数据"
+  },
+  {
+    "id": "test_show_pet_by_id_005",
+    "name": "获取指定宠物详情边界测试-宠物ID为超长字符串",
+    "description": "验证使用256字符超长字符串作为petId时返回400 Bad Request",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "boundary",
+    "expected_status": 400,
+    "data_requirements": "无需特殊数据"
+  }
+]
+Planner Error: Expecting ',' delimiter: line 166 column 18 (char 4131)
+2025-12-12 12:30:24,913 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:57279 - "POST /api/v1/generate HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'app/agent/nodes.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [79253]
+INFO:     Started server process [79585]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-12-12 12:33:48,863 - api_logger - INFO - Started: OPTIONS http://127.0.0.1:8000/api/v1/settings
+2025-12-12 12:33:48,864 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:58163 - "OPTIONS /api/v1/settings HTTP/1.1" 200 OK
+2025-12-12 12:33:48,867 - api_logger - INFO - Started: POST http://127.0.0.1:8000/api/v1/settings
+2025-12-12 12:33:48,867 - api_logger - INFO - Request Body:
+{
+  "base_url": "https://api.moonshot.cn/v1/chat/completions",
+  "api_key": "sk-veeFB3OIDksj7pZpkMDP4yZXihtR2Q0pTzcup7e2ri4EyJgt",
+  "model_name": "kimi-k2-0905-preview",
+  "language": "curl"
+}
+2025-12-12 12:33:48,872 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:58163 - "POST /api/v1/settings HTTP/1.1" 200 OK
+2025-12-12 12:33:56,171 - api_logger - INFO - Started: OPTIONS http://127.0.0.1:8000/api/v1/generate
+2025-12-12 12:33:56,172 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:58166 - "OPTIONS /api/v1/generate HTTP/1.1" 200 OK
+2025-12-12 12:33:56,174 - api_logger - INFO - Started: POST http://127.0.0.1:8000/api/v1/generate
+2025-12-12 12:33:56,174 - api_logger - INFO - Request Body:
+{
+  "openapi_content": "{\n    \"openapi\": \"3.0.0\",\n    \"info\": {\n        \"title\": \"Simple Petstore\",\n        \"version\": \"1.0.0\"\n    },\n    \"paths\": {\n        \"/pets\": {\n            \"get\": {\n                \"summary\": \"List all pets\",\n                \"operationId\": \"listPets\",\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"A paged array of pets\"\n                    }\n                }\n            },\n            \"post\": {\n                \"summary\": \"Create a pet\",\n                \"operationId\": \"createPet\",\n                \"requestBody\": {\n                    \"required\": true,\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"type\": \"object\",\n                                \"required\": [\n                                    \"name\"\n                                ],\n                                \"properties\": {\n                                    \"name\": {\n                                        \"type\": \"string\"\n                                    },\n                                    \"tag\": {\n                                        \"type\": \"string\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"201\": {\n                        \"description\": \"Null response\"\n                    }\n                }\n            }\n        },\n        \"/pets/{petId}\": {\n            \"get\": {\n                \"summary\": \"Info for a specific pet\",\n                \"operationId\": \"showPetById\",\n                \"parameters\": [\n                    {\n                        \"name\": \"petId\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"string\"\n                        }\n                    }\n                ],\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"Expected response to a valid request\"\n                    }\n                }\n            }\n        }\n    }\n}",
+  "target_language": "curl",
+  "llm_config": {
+    "base_url": "https://api.moonshot.cn/v1/chat/completions",
+    "api_key": "sk-veeFB3OIDksj7pZpkMDP4yZXihtR2Q0pTzcup7e2ri4EyJgt",
+    "model_name": "kimi-k2-0905-preview",
+    "tier": "high"
+  },
+  "include_boundary": true,
+  "include_negative": true
+}
+Starting workflow for task bf530f30-b1ca-406e-a24b-ac6732d88bee
+--- 正在执行 Parser Node ---
+--- 正在执行 Planner Node ---
+2025-12-12 12:35:22,977 - httpx - INFO - HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+Standard JSON parse failed: Expecting ',' delimiter: line 84 column 19 (char 2324). Attempting repair...
+Attempting YAML parse...
+All parse attempts failed.
+Raw Content: [
+  {
+    "id": "test_list_pets_001",
+    "name": "List all pets - happy path",
+    "description": "GET /pets with no parameters should return 200 and a list of pets",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "At least one pet exists in the system"
+  },
+  {
+    "id": "test_list_pets_002",
+    "name": "List all pets - empty collection",
+    "description": "GET /pets when no pets exist should return 200 and an empty list",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "No pets in the system"
+  },
+  {
+    "id": "test_create_pet_001",
+    "name": "Create pet with name only",
+    "description": "POST /pets with valid name should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "request_body": {
+      "name": "Fluffy"
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_002",
+    "name": "Create pet with name and tag",
+    "description": "POST /pets with valid name and tag should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "request_body": {
+      "name": "Whiskers",
+      "tag": "cat"
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_003",
+    "name": "Create pet missing required name",
+    "description": "POST /pets without name should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "request_body": {
+      "tag": "dog"
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_004",
+    "name": "Create pet with empty name",
+    "description": "POST /pets with empty string name should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "request_body": {
+      "name": ""
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_005",
+    "name": "Create pet with very long name",
+    "description": "POST /pets with 1000-character name should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "request_body": {
+      "name": "A" * 1000
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_006",
+    "name": "Create pet with very long tag",
+    "description": "POST /pets with 1000-character tag should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "request_body": {
+      "name": "Buddy",
+      "tag": "T" * 1000
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_001",
+    "name": "Get pet by valid ID",
+    "description": "GET /pets/{petId} with existing ID should return 200 and pet details",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "path_params": {
+      "petId": "123"
+    },
+    "data_requirements": "Pet with ID 123 exists"
+  },
+  {
+    "id": "test_show_pet_by_id_002",
+    "name": "Get pet by non-existent ID",
+    "description": "GET /pets/{petId} with non-existing ID should return 404",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "path_params": {
+      "petId": "999999"
+    },
+    "data_requirements": "Pet with ID 999999 does not exist"
+  },
+  {
+    "id": "test_show_pet_by_id_003",
+    "name": "Get pet with empty ID",
+    "description": "GET /pets/{petId} with empty string ID should return 400",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 400,
+    "path_params": {
+      "petId": ""
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_004",
+    "name": "Get pet with special characters in ID",
+    "description": "GET /pets/{petId} with special characters should return 200 if exists",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "boundary",
+    "expected_status": 200,
+    "path_params": {
+      "petId": "pet-@#$%^&*()"
+    },
+    "data_requirements": "Pet with ID 'pet-@#$%^&*()' exists"
+  }
+]
+Extracted String: [
+  {
+    "id": "test_list_pets_001",
+    "name": "List all pets - happy path",
+    "description": "GET /pets with no parameters should return 200 and a list of pets",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "At least one pet exists in the system"
+  },
+  {
+    "id": "test_list_pets_002",
+    "name": "List all pets - empty collection",
+    "description": "GET /pets when no pets exist should return 200 and an empty list",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "No pets in the system"
+  },
+  {
+    "id": "test_create_pet_001",
+    "name": "Create pet with name only",
+    "description": "POST /pets with valid name should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "request_body": {
+      "name": "Fluffy"
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_002",
+    "name": "Create pet with name and tag",
+    "description": "POST /pets with valid name and tag should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "request_body": {
+      "name": "Whiskers",
+      "tag": "cat"
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_003",
+    "name": "Create pet missing required name",
+    "description": "POST /pets without name should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "request_body": {
+      "tag": "dog"
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_004",
+    "name": "Create pet with empty name",
+    "description": "POST /pets with empty string name should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "request_body": {
+      "name": ""
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_005",
+    "name": "Create pet with very long name",
+    "description": "POST /pets with 1000-character name should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "request_body": {
+      "name": "A" * 1000
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_006",
+    "name": "Create pet with very long tag",
+    "description": "POST /pets with 1000-character tag should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "request_body": {
+      "name": "Buddy",
+      "tag": "T" * 1000
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_001",
+    "name": "Get pet by valid ID",
+    "description": "GET /pets/{petId} with existing ID should return 200 and pet details",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "path_params": {
+      "petId": "123"
+    },
+    "data_requirements": "Pet with ID 123 exists"
+  },
+  {
+    "id": "test_show_pet_by_id_002",
+    "name": "Get pet by non-existent ID",
+    "description": "GET /pets/{petId} with non-existing ID should return 404",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "path_params": {
+      "petId": "999999"
+    },
+    "data_requirements": "Pet with ID 999999 does not exist"
+  },
+  {
+    "id": "test_show_pet_by_id_003",
+    "name": "Get pet with empty ID",
+    "description": "GET /pets/{petId} with empty string ID should return 400",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 400,
+    "path_params": {
+      "petId": ""
+    },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_004",
+    "name": "Get pet with special characters in ID",
+    "description": "GET /pets/{petId} with special characters should return 200 if exists",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "boundary",
+    "expected_status": 200,
+    "path_params": {
+      "petId": "pet-@#$%^&*()"
+    },
+    "data_requirements": "Pet with ID 'pet-@#$%^&*()' exists"
+  }
+]
+Planner Error: Expecting ',' delimiter: line 84 column 19 (char 2324)
+2025-12-12 12:35:23,004 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:58166 - "POST /api/v1/generate HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'app/agent/nodes.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [79585]
+INFO:     Started server process [81839]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-12-12 13:33:49,326 - api_logger - INFO - Started: GET http://127.0.0.1:8000/api/v1/settings?_t=1765517629236
+2025-12-12 13:33:49,327 - api_logger - INFO - Started: GET http://127.0.0.1:8000/api/v1/settings?_t=1765517629237
+2025-12-12 13:33:49,333 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:60912 - "GET /api/v1/settings?_t=1765517629236 HTTP/1.1" 200 OK
+2025-12-12 13:33:49,336 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:60913 - "GET /api/v1/settings?_t=1765517629237 HTTP/1.1" 200 OK
+2025-12-12 13:43:12,290 - api_logger - INFO - Started: GET http://127.0.0.1:8000/api/v1/settings?_t=1765518192184
+2025-12-12 13:43:12,295 - api_logger - INFO - Started: GET http://127.0.0.1:8000/api/v1/settings?_t=1765518192186
+2025-12-12 13:43:12,496 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:61727 - "GET /api/v1/settings?_t=1765518192184 HTTP/1.1" 200 OK
+2025-12-12 13:43:12,497 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:61728 - "GET /api/v1/settings?_t=1765518192186 HTTP/1.1" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [81839]
+
+
+# morsuning @ CeionBook-Air in ~/Desktop/ai-api-testcase-gen/backend on git:main x [15:01:59] 
+$ uv run uvicorn app.main:app --reload --port 8000
+INFO:     Will watch for changes in these directories: ['/Users/morsuning/Desktop/ai-api-testcase-gen/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [92601] using StatReload
+INFO:     Started server process [92603]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-12-12 15:03:18,894 - api_logger - INFO - Started: GET http://127.0.0.1:8000/api/v1/settings?_t=1765522998882
+2025-12-12 15:03:18,895 - api_logger - INFO - Started: GET http://127.0.0.1:8000/api/v1/settings?_t=1765522998883
+2025-12-12 15:03:18,899 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:49690 - "GET /api/v1/settings?_t=1765522998882 HTTP/1.1" 200 OK
+2025-12-12 15:03:18,900 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:49691 - "GET /api/v1/settings?_t=1765522998883 HTTP/1.1" 200 OK
+2025-12-12 15:03:41,594 - api_logger - INFO - Started: OPTIONS http://127.0.0.1:8000/api/v1/generate
+2025-12-12 15:03:41,595 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:49706 - "OPTIONS /api/v1/generate HTTP/1.1" 200 OK
+2025-12-12 15:03:41,598 - api_logger - INFO - Started: POST http://127.0.0.1:8000/api/v1/generate
+2025-12-12 15:03:41,598 - api_logger - INFO - Request Body:
+{
+  "openapi_content": "{\n    \"openapi\": \"3.0.0\",\n    \"info\": {\n        \"title\": \"Simple Petstore\",\n        \"version\": \"1.0.0\"\n    },\n    \"paths\": {\n        \"/pets\": {\n            \"get\": {\n                \"summary\": \"List all pets\",\n                \"operationId\": \"listPets\",\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"A paged array of pets\"\n                    }\n                }\n            },\n            \"post\": {\n                \"summary\": \"Create a pet\",\n                \"operationId\": \"createPet\",\n                \"requestBody\": {\n                    \"required\": true,\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"type\": \"object\",\n                                \"required\": [\n                                    \"name\"\n                                ],\n                                \"properties\": {\n                                    \"name\": {\n                                        \"type\": \"string\"\n                                    },\n                                    \"tag\": {\n                                        \"type\": \"string\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"201\": {\n                        \"description\": \"Null response\"\n                    }\n                }\n            }\n        },\n        \"/pets/{petId}\": {\n            \"get\": {\n                \"summary\": \"Info for a specific pet\",\n                \"operationId\": \"showPetById\",\n                \"parameters\": [\n                    {\n                        \"name\": \"petId\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"string\"\n                        }\n                    }\n                ],\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"Expected response to a valid request\"\n                    }\n                }\n            }\n        }\n    }\n}",
+  "target_language": "curl",
+  "llm_config": {
+    "base_url": "https://api.moonshot.cn/v1/chat/completions",
+    "api_key": "sk-veeFB3OIDksj7pZpkMDP4yZXihtR2Q0pTzcup7e2ri4EyJgt",
+    "model_name": "kimi-k2-0905-preview",
+    "tier": "high"
+  },
+  "include_boundary": true,
+  "include_negative": true
+}
+Starting workflow for task a0987868-9b27-4384-9811-f5e379ecaf4b
+--- 正在执行 Parser Node ---
+--- 正在执行 Planner Node ---
+2025-12-12 15:04:57,377 - httpx - INFO - HTTP Request: POST https://api.moonshot.cn/v1/chat/completions "HTTP/1.1 200 OK"
+Standard JSON parse failed: Expecting ',' delimiter: line 85 column 30 (char 2623). Attempting repair...
+Attempting YAML parse...
+All parse attempts failed.
+Raw Content: [
+  {
+    "id": "test_list_pets_001",
+    "name": "List all pets - success",
+    "description": "GET /pets with no parameters should return 200 and a list of pets",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "At least one pet exists in the store"
+  },
+  {
+    "id": "test_list_pets_002",
+    "name": "List all pets - empty store",
+    "description": "GET /pets when no pets exist should return 200 and an empty list",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "No pets in the store"
+  },
+  {
+    "id": "test_create_pet_001",
+    "name": "Create pet - minimal valid payload",
+    "description": "POST /pets with only required field 'name' should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "payload": { "name": "Fluffy" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_002",
+    "name": "Create pet - full valid payload",
+    "description": "POST /pets with both 'name' and 'tag' should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "payload": { "name": "Buddy", "tag": "dog" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_003",
+    "name": "Create pet - missing required name",
+    "description": "POST /pets without 'name' should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "payload": { "tag": "cat" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_004",
+    "name": "Create pet - empty payload",
+    "description": "POST /pets with empty JSON object should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "payload": {},
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_005",
+    "name": "Create pet - name as empty string",
+    "description": "POST /pets with empty string for 'name' should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 400,
+    "payload": { "name": "" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_006",
+    "name": "Create pet - name with max length",
+    "description": "POST /pets with a very long 'name' (e.g., 1000 chars) should return 201 if accepted",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "payload": { "name": "A" * 1000 },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_001",
+    "name": "Get pet by ID - success",
+    "description": "GET /pets/{petId} with existing petId should return 200 and pet details",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "path_params": { "petId": "123" },
+    "data_requirements": "Pet with ID '123' exists"
+  },
+  {
+    "id": "test_show_pet_by_id_002",
+    "name": "Get pet by ID - not found",
+    "description": "GET /pets/{petId} with non-existent petId should return 404",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "path_params": { "petId": "999999" },
+    "data_requirements": "Pet with ID '999999' does not exist"
+  },
+  {
+    "id": "test_show_pet_by_id_003",
+    "name": "Get pet by ID - missing path param",
+    "description": "GET /pets/ without petId should return 404 or 405",
+    "endpoint": "/pets/",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_004",
+    "name": "Get pet by ID - special characters in ID",
+    "description": "GET /pets/{petId} with special characters in petId should return 200 if valid or 404 if not found",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "boundary",
+    "expected_status": 200,
+    "path_params": { "petId": "pet-123_test" },
+    "data_requirements": "Pet with ID 'pet-123_test' exists"
+  }
+]
+Extracted String: [
+  {
+    "id": "test_list_pets_001",
+    "name": "List all pets - success",
+    "description": "GET /pets with no parameters should return 200 and a list of pets",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "At least one pet exists in the store"
+  },
+  {
+    "id": "test_list_pets_002",
+    "name": "List all pets - empty store",
+    "description": "GET /pets when no pets exist should return 200 and an empty list",
+    "endpoint": "/pets",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "data_requirements": "No pets in the store"
+  },
+  {
+    "id": "test_create_pet_001",
+    "name": "Create pet - minimal valid payload",
+    "description": "POST /pets with only required field 'name' should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "payload": { "name": "Fluffy" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_002",
+    "name": "Create pet - full valid payload",
+    "description": "POST /pets with both 'name' and 'tag' should return 201",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "positive",
+    "expected_status": 201,
+    "payload": { "name": "Buddy", "tag": "dog" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_003",
+    "name": "Create pet - missing required name",
+    "description": "POST /pets without 'name' should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "payload": { "tag": "cat" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_004",
+    "name": "Create pet - empty payload",
+    "description": "POST /pets with empty JSON object should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "negative",
+    "expected_status": 400,
+    "payload": {},
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_005",
+    "name": "Create pet - name as empty string",
+    "description": "POST /pets with empty string for 'name' should return 400",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 400,
+    "payload": { "name": "" },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_create_pet_006",
+    "name": "Create pet - name with max length",
+    "description": "POST /pets with a very long 'name' (e.g., 1000 chars) should return 201 if accepted",
+    "endpoint": "/pets",
+    "method": "POST",
+    "type": "boundary",
+    "expected_status": 201,
+    "payload": { "name": "A" * 1000 },
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_001",
+    "name": "Get pet by ID - success",
+    "description": "GET /pets/{petId} with existing petId should return 200 and pet details",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "positive",
+    "expected_status": 200,
+    "path_params": { "petId": "123" },
+    "data_requirements": "Pet with ID '123' exists"
+  },
+  {
+    "id": "test_show_pet_by_id_002",
+    "name": "Get pet by ID - not found",
+    "description": "GET /pets/{petId} with non-existent petId should return 404",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "path_params": { "petId": "999999" },
+    "data_requirements": "Pet with ID '999999' does not exist"
+  },
+  {
+    "id": "test_show_pet_by_id_003",
+    "name": "Get pet by ID - missing path param",
+    "description": "GET /pets/ without petId should return 404 or 405",
+    "endpoint": "/pets/",
+    "method": "GET",
+    "type": "negative",
+    "expected_status": 404,
+    "data_requirements": "None"
+  },
+  {
+    "id": "test_show_pet_by_id_004",
+    "name": "Get pet by ID - special characters in ID",
+    "description": "GET /pets/{petId} with special characters in petId should return 200 if valid or 404 if not found",
+    "endpoint": "/pets/{petId}",
+    "method": "GET",
+    "type": "boundary",
+    "expected_status": 200,
+    "path_params": { "petId": "pet-123_test" },
+    "data_requirements": "Pet with ID 'pet-123_test' exists"
+  }
+]
+Planner Error: Expecting ',' delimiter: line 85 column 30 (char 2623)
+2025-12-12 15:04:57,501 - api_logger - INFO - Completed: Status 200
+INFO:     127.0.0.1:49706 - "POST /api/v1/generate HTTP/1.1" 200 OK

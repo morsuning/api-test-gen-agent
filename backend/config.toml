@@ -1,0 +1,6 @@
+base_url = "https://api.moonshot.cn/v1/chat/completions"
+api_key = "sk-veeFxxxxxxxxxTzcup7e2ri4EyJgt"
+model_name = "kimi-k2-0905-preview"
+language = "go"
+debug_mode = false
+debug_log_path = "debug.log"
