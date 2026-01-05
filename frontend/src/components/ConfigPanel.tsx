@@ -182,8 +182,8 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({
                                 className="w-full appearance-none rounded-xl border-slate-200 bg-slate-50/50 hover:bg-white focus:bg-white shadow-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 py-3 px-4 text-slate-700 transition-all cursor-pointer"
                                 disabled={isGenerating}
                             >
-                                <option value="go">Go (Golang)</option>
                                 <option value="java">Java</option>
+                                <option value="go">Go</option>
                                 <option value="curl">cURL (Shell)</option>
                             </select>
                             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">

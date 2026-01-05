@@ -1,7 +1,5 @@
 # Changelog
 
-## [Unreleased] - 2025-05-23
-
 ### Added
 
 - **Backend Architecture**:
@@ -42,3 +40,7 @@
   - **Backend**: 增强请求日志功能，支持 **递归解包** 嵌套的 JSON 字符串，确保日志以结构化、易读的形式输出。
   - **Backend**: 重构配置管理，将配置文件格式从 `settings.json` 迁移至 `config.toml`，并实现自动迁移逻辑。
   - **Verification**: 完成后端 Agent 逻辑的 POC 验证，成功生成 Go 语言测试代码。
+- **Environment & Documentation (2025-12-17)**:
+  - **Backend**: 修复 `langchain-google-genai` 依赖缺失问题。
+  - **Documentation**: 完善 `backend/README.md` 和 `frontend/README.md`，添加详细的 `uv` 和 `bun` 启动指南。
+  - **Documentation**: 修正 `docs/project.md` 中的重复内容。

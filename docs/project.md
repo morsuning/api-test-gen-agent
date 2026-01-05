@@ -18,7 +18,7 @@
   * **Low Tier**: 针对 Qwen 等轻量模型，使用结构化 Few-Shot 引导。
 * **配置管理**: 支持在前端设置 Base URL、API Key 和模型名称，且配置自动持久化。
 * **可视化交互**: 提供全新的现代化 Web 界面进行文件上传、配置调整和结果预览。
-* **可视化交互**: 提供全新的现代化 Web 界面进行文件上传、配置调整和ূল果预览。
+
 * **可观测性**: 后端集成 Debug 日志中间件，实时记录所有 API 请求与响应详情。支持 **递归 JSON 格式化**，即使是嵌套在字符串中的 JSON 数据也会被展开显示，极大提升日志可读性。
 * **LangGraph Debug 模式**: 支持在配置文件中开启 Debug 模式，自动将每个节点的输入输出状态记录到日志文件，便于调试智能体逻辑。
 * **LangGraph Debug 模式**: 支持在配置文件中开启 Debug 模式，自动将每个节点的输入输出状态记录到日志文件，便于调试智能体逻辑。
@@ -111,3 +111,99 @@
 * **解决方案**: 请检查 `backend/config.toml` 中的 **Base URL**，或通过前端设置面板调整。
 * 系统支持自动修正：您可以直接填入服务商提供的完整 Endpoint，系统会自动识别并调整。
 * 确保您的 API 服务提供商支持标准的 OpenAI 协议 (`/chat/completions` 路径)。
+
+## 7. 私有环境部署指南 (Private Environment Deployment)
+
+如果您的运行环境无法连接互联网，但可以通过 Artifactory 等私有制品库获取依赖，请按照以下指南进行配置。
+
+### 7.1 前置准备
+
+请确保您拥有以下信息：
+* **私有 PyPI 源地址**: 例如 `https://artifactory.example.com/artifactory/api/pypi/pypi-local/simple`
+* **私有 NPM 源地址**: 例如 `https://artifactory.example.com/artifactory/api/npm/npm-local/`
+* **认证信息**: 用户名/密码 或 Auth Token。
+
+### 7.2 后端配置 (Python/uv)
+
+本项目使用 `uv` 进行包管理。您可以通过设置环境变量来指定私有源，无需修改代码。
+
+1. **配置环境变量**
+
+   在终端中执行以下命令 (临时生效) 或写入 `~/.bashrc` / `.zshrc` (永久生效)：
+
+   ```bash
+   # 替换为您的私有源地址和认证信息
+   export UV_INDEX_URL="https://<username>:<password>@artifactory.example.com/artifactory/api/pypi/pypi-local/simple"
+   
+   # 如果私有源使用自签名证书，可能还需要跳过 SSL 验证 (生产环境请谨慎使用)
+   # export UV_NATIVE_TLS=1 
+   ```
+
+   或者，如果您的私有源不需要认证，或者您希望显式配置，可以修改 `backend/pyproject.toml` (不推荐，会污染源码) 或创建一个 `uv.toml` 文件：
+
+   ```toml
+   # backend/uv.toml
+   [[index]]
+   url = "https://artifactory.example.com/artifactory/api/pypi/pypi-local/simple"
+   default = true
+   ```
+
+2. **安装依赖**
+
+   ```bash
+   cd backend
+   uv sync
+   ```
+
+### 7.3 前端配置 (Frontend/Bun)
+
+前端使用 `bun` 作为运行时和包管理器。由于 `bun` 兼容 `npm` 的配置，我们可以通过 `.npmrc` 文件配置私有源。
+
+1. **创建配置文件**
+
+   在 `frontend` 目录下创建一个名为 `.npmrc` 的文件：
+
+   ```ini
+   # frontend/.npmrc
+   registry=https://artifactory.example.com/artifactory/api/npm/npm-local/
+   
+   # 如果需要认证 (Auth Token 方式)
+   //artifactory.example.com/artifactory/api/npm/npm-local/:_authToken=YOUR_AUTH_TOKEN
+   
+   # 或者 (用户名/密码 Base64 方式)
+   # _auth=BASE64_ENCODED_USER_PASS
+   # always-auth=true
+   ```
+
+2. **安装依赖**
+
+   ```bash
+   cd frontend
+   bun install
+   ```
+
+   *注意：如果遇到 `bun` 安装某些二进制包 (如 esbuild) 失败，可能需要手动下载对应平台的二进制文件并配置路径，或者请求网络权限放行 `github.com`。*
+
+### 7.4 启动服务
+
+配置完成后，启动步骤与常规流程一致：
+
+1. **启动后端**
+   ```bash
+   cd backend
+   uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
+   ```
+
+2. **启动前端**
+   ```bash
+   cd frontend
+   bun dev --host
+   ```
+   
+   若需部署到生产环境 (构建静态资源)：
+   ```bash
+   cd frontend
+   bun run build
+   # 构建产物位于 dist 目录，可使用 nginx 托管
+   ```
+
